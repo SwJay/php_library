@@ -1,0 +1,3 @@
+88888888, Computer Science, Computer Architecture, xxx, 2004, xxx, 90.00, 2
+999999999, Compuetr Science, Introduction to Database, zju, 2018, swj, 666.00, 13
+0000000000, philosophy, thankgod, zju, 2010, swj, 66.00, 1
