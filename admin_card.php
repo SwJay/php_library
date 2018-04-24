@@ -57,15 +57,17 @@
 	if(isset($_POST["delete"])&&$_POST["delete"]){
 		$result = mysqli_query($mydb,"SELECT * FROM BORROW where cno = '$_POST[del_cno]'");
 		$row = mysqli_fetch_array($result);
-		if($row)
-			echo '<script>alert("Can\'t remove this user until all borrowed books are returned!")</script>';
-		else{
+		if(!$row||$row["return_date"]!=""){//delete
 			echo '<script>alert("succeed in deleting!")</script>';
+			mysqli_query($mydb,"delete from borrow where cno = '$_POST[del_cno]'");
 			mysqli_query($mydb,"delete from card where cno = '$_POST[del_cno]'");
 			mysqli_query($mydb,"drop user '$_POST[del_cno]'@'localhost'");
 			unset($_POST["delete"]);
+			}
+		else{//borrowed book and haven't return yet, can't delete
+			echo '<script>alert("Can\'t remove this user until all borrowed books are returned!")</script>';
 		}
-	}	
+	}		
 
 	echo "<table border='1' align='center'>
 	<tr>
